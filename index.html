@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+
+  <title>Tanner Mares | Developer</title>
+
+  <meta property="og:title" content="Tanner Mares | Developer" />
+  <meta property="og:locale" content="en_US" />
+
+  <link rel="canonical" href="//" />
+
+  <meta property="og:url" content="//" />
+  <meta name="description" content="Hi I'm Tanner. This is my personal portfolio." />
+
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+
+  <meta name="theme-color" content="#5540af" />
+  <meta property="og:site_name" content="Tanner Mares" />
+  <meta property="og:image" content="//assets/img/me.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@tannermares" />
+
+  <link crossorigin="crossorigin" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link as="style"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap"
+    rel="preload" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link crossorigin="anonymous" href="/assets/styles/main.min.css" media="screen" rel="stylesheet" />
+
+  <script defer src="https://unpkg.com/@alpine-collective/toolkit@1.0.0/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body :class="{ 'overflow-hidden max-h-screen': mobileMenu }" class="relative" x-data="{ mobileMenu: false }">
+  <div id="main" class="relative">
+    <div
+      x-data="{ triggerNavItem(id) { $scroll(id) }, triggerMobileNavItem(id) { mobileMenu = false; this.triggerNavItem(id) }}">
+      <div class="w-full z-50 top-0 py-3 sm:py-5 absolute">
+        <div class="container flex items-center justify-between">
+          <div>
+            <span class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white text-2xl">tm</span>
+          </div>
+          <div class="hidden lg:block">
+            <ul class="flex items-center">
+              <li class="group pl-6">
+                <span @click="triggerNavItem('#about')"
+                  class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">About</span>
+                <span class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
+              </li>
+              <li class="group pl-6">
+                <span @click="triggerNavItem('#work')"
+                  class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Work</span>
+                <span class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
+              </li>
+              <li class="group pl-6">
+                <span @click="triggerNavItem('#videos')"
+                  class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">videos</span>
+                <span class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
+              </li>
+              <li class="group pl-6">
+                <span @click="triggerNavItem('#contact')"
+                  class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Contact</span>
+                <span class="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
+              </li>
+            </ul>
+          </div>
+          <div class="block lg:hidden">
+            <button @click="mobileMenu = true">
+              <i class="bx bx-menu text-4xl text-white"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden"
+        :class="{ 'opacity-100 pointer-events-auto': mobileMenu }">
+        <div class="absolute right-0 min-h-screen w-2/3 bg-primary py-4 px-8 shadow md:w-1/3">
+          <button class="absolute top-0 right-0 mt-4 mr-4" @click="mobileMenu = false">
+            <img src="/assets/img/icon-close.svg" class="h-10 w-auto" alt="" />
+          </button>
+          <ul class="mt-8 flex flex-col">
+            <li class="py-2">
+              <span @click="triggerMobileNavItem('#about')"
+                class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">About</span>
+            </li>
+            <li class="py-2">
+              <span @click="triggerMobileNavItem('#work')"
+                class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Work</span>
+            </li>
+            <li class="py-2">
+              <span @click="triggerMobileNavItem('#videos')"
+                class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Videos</span>
+            </li>
+            <li class="py-2">
+              <span @click="triggerMobileNavItem('#contact')"
+                class="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Contact</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="relative bg-cover bg-center bg-no-repeat py-8"
+          style="background-image: url(/assets/img/bg-hero.jpg)">
+          <div
+            class="absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from to-hero-gradient-to bg-cover bg-center bg-no-repeat">
+          </div>
+          <div class="container relative z-30 pt-20 pb-12 sm:pt-56 sm:pb-48 lg:pt-64 lg:pb-48">
+            <div class="flex flex-col items-center justify-center lg:flex-row">
+              <div class="rounded-full border-8 border-primary shadow-xl">
+                <img src="/assets/img/me.jpeg" class="h-48 rounded-full sm:h-56" alt="author" />
+              </div>
+              <div class="pt-8 sm:pt-10 lg:pl-8 lg:pt-0">
+                <h1 class="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl">
+                  Hey I'm Tanner Mares!
+                </h1>
+                <div class="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start">
+                  <div class="flex items-center justify-center pl-0 sm:justify-start md:pl-1">
+                    <p class="font-body text-lg uppercase text-white">Let's connect</p>
+                    <div class="hidden sm:block">
+                      <i class="bx bx-chevron-right text-3xl text-yellow"></i>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
+                    <a href="https://github.com/tannermares" target="_blank">
+                      <i class="bx bxl-github text-2xl text-white hover:text-yellow"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tannermares" target="_blank" class="pl-4">
+                      <i class="bx bxl-linkedin text-2xl text-white hover:text-yellow"></i>
+                    </a>
+                    <a href="https://www.twitch.tv/tannermares" target="_blank" class="pl-4">
+                      <i class="bx bxl-twitch text-2xl text-white hover:text-yellow"></i>
+                    </a>
+                    <a href="https://x.com/tannermares" target="_blank" class="pl-4">
+                      <i class="bx bxl-twitter text-2xl text-white hover:text-yellow"></i>
+                    </a>
+                    <a href="https://www.youtube.com/tannermares" target="_blank" class="pl-4">
+                      <i class="bx bxl-youtube text-2xl text-white hover:text-yellow"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-grey-50" id="about">
+          <div class="container flex flex-col items-center py-16 md:py-20 lg:flex-row">
+            <div class="w-full text-center sm:w-3/4 lg:w-3/5 lg:text-left">
+              <h2 class="font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">Who am I?
+              </h2>
+              <h4 class="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">I'm Tanner Mares, a
+                Web Developer</h4>
+              <p class="pt-6 font-body leading-relaxed text-grey-20">A software engineer with over ten years of
+                programming experience, specializing in Ruby on Rails and React. Skilled in leading teams to enhance
+                product quality and engineering excellence. Passionate about mentoring developers, focusing on best
+                engineering practices and performance optimization.</p>
+              <div class="flex flex-col justify-center pt-6 sm:flex-row lg:justify-start">
+                <div class="flex items-center justify-center sm:justify-start">
+                  <p class="font-body text-lg font-semibold uppercase text-grey-20">Connect with me</p>
+                  <div class="hidden sm:block">
+                    <i class="bx bx-chevron-right text-2xl text-primary"></i>
+                  </div>
+                </div>
+                <div class="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
+                  <a href="https://github.com/tannermares" target="_blank">
+                    <i class="bx bxl-github text-2xl text-primary hover:text-yellow"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/tannermares" target="_blank" class="pl-4">
+                    <i class="bx bxl-linkedin text-2xl text-primary hover:text-yellow"></i>
+                  </a>
+                  <a href="https://www.twitch.tv/tannermares" target="_blank" class="pl-4">
+                    <i class="bx bxl-twitch text-2xl text-primary hover:text-yellow"></i>
+                  </a>
+                  <a href="https://x.com/tannermares" target="_blank" class="pl-4">
+                    <i class="bx bxl-twitter text-2xl text-primary hover:text-yellow"></i>
+                  </a>
+                  <a href="https://www.youtube.com/tannermares" target="_blank" class="pl-4">
+                    <i class="bx bxl-youtube text-2xl text-primary hover:text-yellow"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="w-full pl-0 pt-10 sm:w-3/4 lg:w-2/5 lg:pl-12 lg:pt-0">
+              <div>
+                <div class="flex items-end justify-between">
+                  <h4 class="font-body font-semibold uppercase text-black">Ruby On Rails</h4>
+                  <h3 class="font-body text-3xl font-bold text-primary">85%</h3>
+                </div>
+                <div class="mt-2 h-3 w-full rounded-full bg-lila">
+                  <div class="h-3 rounded-full bg-primary" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="pt-6">
+                <div class="flex items-end justify-between">
+                  <h4 class="font-body font-semibold uppercase text-black">React</h4>
+                  <h3 class="font-body text-3xl font-bold text-primary">80%</h3>
+                </div>
+                <div class="mt-2 h-3 w-full rounded-full bg-lila">
+                  <div class="h-3 rounded-full bg-primary" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="pt-6">
+                <div class="flex items-end justify-between">
+                  <h4 class="font-body font-semibold uppercase text-black">React Native</h4>
+                  <h3 class="font-body text-3xl font-bold text-primary">70%</h3>
+                </div>
+                <div class="mt-2 h-3 w-full rounded-full bg-lila">
+                  <div class="h-3 rounded-full bg-primary" style="width: 70%"></div>
+                </div>
+              </div>
+              <div class="pt-6">
+                <div class="flex items-end justify-between">
+                  <h4 class="font-body font-semibold uppercase text-black">Javascript</h4>
+                  <h3 class="font-body text-3xl font-bold text-primary">85%</h3>
+                </div>
+                <div class="mt-2 h-3 w-full rounded-full bg-lila">
+                  <div class="h-3 rounded-full bg-primary" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container py-16 md:py-20" id="work">
+          <h2 class="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">My
+            work experience</h2>
+          <h3 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">Here's what
+            I've done with the past</h3>
+          <div class="relative mx-auto mt-12 flex w-full flex-col lg:w-2/3">
+            <span class="left-2/5 absolute inset-y-0 ml-10 hidden w-0.5 bg-grey-40 md:block"></span>
+            <div class="mt-8 flex flex-col text-center md:flex-row md:text-left">
+              <div class="md:w-2/5">
+                <div class="flex justify-center md:justify-start">
+                  <span class="shrink-0">
+                    <img src="/assets/img/logo-planningcenter.jpg" class="h-auto w-16" alt="Planning Center Logo" />
+                  </span>
+                  <div class="relative ml-3 hidden w-full md:block">
+                    <span class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-grey-70"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-3/5">
+                <div class="relative flex md:pl-18">
+                  <span
+                    class="absolute left-8 top-1 hidden h-4 w-4 rounded-full border-2 border-grey-40 bg-white md:block"></span>
+                  <div class="mt-1 flex">
+                    <i class="bx bxs-right-arrow hidden text-primary md:block"></i>
+                    <div class="md:-mt-1 md:pl-8">
+                      <span class="block font-body font-bold text-grey-40">Apr 2013 - Present</span>
+                      <span class="block pt-2 font-header text-xl font-bold uppercase text-primary">Lead
+                        Developer</span>
+                      <div class="pt-2">
+                        <span class="block font-body text-black">Grew from Apprentice Developer to Lead Developer over a
+                          decade, gaining Ruby on Rails and React expertise.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col text-center md:flex-row md:text-left">
+              <div class="md:w-2/5">
+                <div class="flex justify-center md:justify-start">
+                  <span class="shrink-0">
+                    <img src="/assets/img/logo-ready-five.jpg" class="h-auto w-16" alt="Ready Five Logo" />
+                  </span>
+                  <div class="relative ml-3 hidden w-full md:block">
+                    <span class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-grey-70"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-3/5">
+                <div class="relative flex md:pl-18">
+                  <span
+                    class="absolute left-8 top-1 hidden h-4 w-4 rounded-full border-2 border-grey-40 bg-white md:block"></span>
+                  <div class="mt-1 flex">
+                    <i class="bx bxs-right-arrow hidden text-primary md:block"></i>
+                    <div class="md:-mt-1 md:pl-8">
+                      <span class="block font-body font-bold text-grey-40">Oct 2018 - May 2022</span>
+                      <span class="block pt-2 font-header text-xl font-bold uppercase text-primary">Co-Founder &
+                        Software Engineer</span>
+                      <div class="pt-2">
+                        <span class="block font-body text-black">Built Ready Five web/mobile applications using
+                          React/React Native with GraphQL and AWS Amplify.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col text-center md:flex-row md:text-left">
+              <div class="md:w-2/5">
+                <div class="flex justify-center md:justify-start">
+                  <span class="shrink-0">
+                    <img src="/assets/img/logo-id-analytics.jpg" class="h-auto w-16" alt="company logo" />
+                  </span>
+                  <div class="relative ml-3 hidden w-full md:block">
+                    <span class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-grey-70"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-3/5">
+                <div class="relative flex md:pl-18">
+                  <span
+                    class="absolute left-8 top-1 hidden h-4 w-4 rounded-full border-2 border-grey-40 bg-white md:block"></span>
+                  <div class="mt-1 flex">
+                    <i class="bx bxs-right-arrow hidden text-primary md:block"></i>
+                    <div class="md:-mt-1 md:pl-8">
+                      <span class="block font-body font-bold text-grey-40">Dec 2012 - Mar 2013</span>
+                      <span class="block pt-2 font-header text-xl font-bold uppercase text-primary">Statistical Engineer
+                        Intern</span>
+                      <div class="pt-2">
+                        <span class="block font-body text-black">Managed and updated Java Applications used for data
+                          mining and developed Python scripts to ingest large data sets for machine learning
+                          analysis.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-grey-50" id="videos">
+          <div class="container py-16 md:py-20">
+            <h2 class="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">I
+              also like to make videos</h2>
+            <h4 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">Check out my
+              latest streams!</h4>
+            <div class="mx-auto grid w-full grid-cols-1 gap-6 pt-12 sm:w-3/4 lg:w-full lg:grid-cols-2 xl:gap-10">
+              <div class="relative h-0" style="padding-bottom: 56.25%;">
+                <iframe class="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/videoseries?si=uS7YfIwA1ibStMhG&amp;list=PLU4yWcUTVijWD4aMKFEeQnIq0av_G-nkb"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <div class="relative h-0" style="padding-bottom: 56.25%;">
+                <iframe class="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/videoseries?si=HgTH2s_7lRpSdAIZ&amp;list=PLU4yWcUTVijVHKLes16TXnQgLFfOJ6OOr"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="contact" class="relative bg-primary bg-cover bg-center bg-no-repeat py-16 bg-blend-multiply lg:py-24"
+          style="background-image: url(/assets/img/bg-cta.jpg)">
+          <div class="container relative z-30">
+            <h3
+              class="text-center font-header text-3xl uppercase leading-tight tracking-wide text-white sm:text-4xl lg:text-5xl">
+              You can email me if you want.</h3>
+            <div class="mt-6 flex flex-col justify-center sm:flex-row">
+              <a href="mailto:tannermares@gmail.com?subject=Hello from tannermares.com!"
+                class="mt-2 rounded bg-yellow px-8 py-3 font-body text-base font-bold uppercase text-primary transition-colors hover:bg-primary hover:text-white focus:border-transparent focus:outline-none focus:ring focus:ring-yellow sm:ml-2 sm:mt-0 sm:py-4 md:text-lg">Email
+                me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-primary">
+      <div class="container flex flex-col justify-between py-6 sm:flex-row">
+        <p class="text-center font-body text-white md:text-left">© 2024 Tanner Mares. All rights reserved.</p>
+        <div class="flex items-center justify-center pt-5 sm:justify-start sm:pt-0">
+          <a href="https://github.com/tannermares" target="_blank">
+            <i class="bx bxl-github text-2xl text-white hover:text-yellow"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/tannermares" target="_blank" class="pl-4">
+            <i class="bx bxl-linkedin text-2xl text-white hover:text-yellow"></i>
+          </a>
+          <a href="https://www.twitch.tv/tannermares" target="_blank" class="pl-4">
+            <i class="bx bxl-twitch text-2xl text-white hover:text-yellow"></i>
+          </a>
+          <a href="https://x.com/tannermares" target="_blank" class="pl-4">
+            <i class="bx bxl-twitter text-2xl text-white hover:text-yellow"></i>
+          </a>
+          <a href="https://www.youtube.com/tannermares" target="_blank" class="pl-4">
+            <i class="bx bxl-youtube text-2xl text-white hover:text-yellow"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/js/main.js"></script>
+  </div>
+</body>
+
+</html>
