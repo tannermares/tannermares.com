@@ -7,7 +7,7 @@
   "scripts": {
     "css": "postcss assets/styles/main.css -o assets/styles/main.min.css --verbose",
     "server-reload": "browser-sync start --config './browser-sync-config.js'",
-    "develop": "concurrently 'npm:css -- --watch' 'npm:server-reload'",
+    "start": "concurrently 'npm:css -- --watch' 'npm:server-reload'",
     "build": "npm run css -- --env 'production'",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
