@@ -1,5 +1,6 @@
 {
   "name": "tannermares.com",
+  "homepage": "https://tannermares.github.io/tannermares.com",
   "version": "1.0.0",
   "author": "Tanner Mares",
   "private": true,
@@ -8,6 +9,8 @@
     "server-reload": "browser-sync start --config './browser-sync-config.js'",
     "develop": "concurrently 'npm:css -- --watch' 'npm:server-reload'",
     "build": "npm run css -- --env 'production'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "format": "npx prettier ./**/*.html"
   },
   "browserslist": [
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.7",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.8",
