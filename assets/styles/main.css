@@ -5,4 +5,520 @@ html {
   @apply font-body antialiased;
 }
 
+/* ── Base styles ── */
+body {
+  @apply bg-black text-primary;
+  image-rendering: auto;
+}
+
+/* ── CRT Scanline Overlay ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Glow Text ── */
+.glow-text {
+  text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41;
+}
+
+.glow-text-subtle {
+  text-shadow: 0 0 3px #00ff41, 0 0 6px rgba(0, 255, 65, 0.4);
+}
+
+.glow-text-amber {
+  text-shadow: 0 0 5px #ffb000, 0 0 10px #ffb000;
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+.glow-text-pink {
+  text-shadow: 0 0 5px #ff2d95, 0 0 10px #ff2d95;
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 5px #b967ff, 0 0 10px #b967ff;
+}
+
+.glow-text-teal {
+  text-shadow: 0 0 5px #01cdfe, 0 0 10px #01cdfe;
+}
+
+/* ── Hero Section ── */
+.hero-section {
+  background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.03) 0%, #0a0a0a 70%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-glow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(1, 205, 254, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Hero Avatar ── */
+.hero-avatar-ring {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  padding: 4px;
+  background: #00ff41;
+  animation: hero-ring-spin 6s linear infinite;
+}
+
+@keyframes hero-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.hero-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #0a0a0a;
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.3) contrast(1.1);
+}
+
+.hero-avatar-ring::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: #00ff41;
+  opacity: 0.25;
+  filter: blur(16px);
+  animation: hero-ring-spin 6s linear infinite;
+  z-index: -1;
+}
+
+/* ── Hero Fade In ── */
+.hero-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-reveal 0.6s ease-out forwards;
+}
+
+@keyframes hero-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Hero Social Links ── */
+.hero-social-link {
+  @apply text-dim-green transition-all duration-200;
+}
+
+.hero-social-link:hover {
+  @apply text-teal;
+  text-shadow: 0 0 10px #01cdfe;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 640px) {
+  .hero-avatar-ring {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* ── Terminal Cursor ── */
+.terminal-cursor::after {
+  content: "█";
+  @apply text-primary animate-blink ml-1;
+}
+
+/* ── TUI Panel ── */
+.tui-panel {
+  @apply relative border border-dim-green bg-grey-50 p-4 sm:p-6 transition-all duration-300;
+}
+
+.tui-panel::before {
+  content: attr(data-label);
+  @apply absolute -top-3 left-4 px-2 font-header text-xs tracking-wider;
+  background-color: #0d0d0d;
+  color: #0d4f0d;
+}
+
+.tui-panel.active,
+.tui-panel:hover {
+  @apply border-primary;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+}
+
+.tui-panel.active::before,
+.tui-panel:hover::before {
+  @apply text-primary;
+}
+
+.tui-panel.panel-pink.active,
+.tui-panel.panel-pink:hover {
+  @apply border-pink;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.2);
+}
+
+.tui-panel.panel-pink.active::before,
+.tui-panel.panel-pink:hover::before {
+  @apply text-pink;
+}
+
+.tui-panel.panel-pink::before {
+  color: #4a0d2e;
+}
+
+.tui-panel.panel-teal.active,
+.tui-panel.panel-teal:hover {
+  @apply border-teal;
+  box-shadow: 0 0 10px rgba(1, 205, 254, 0.2);
+}
+
+.tui-panel.panel-teal.active::before,
+.tui-panel.panel-teal:hover::before {
+  @apply text-teal;
+}
+
+.tui-panel.panel-teal::before {
+  color: #0d3f4f;
+}
+
+.tui-panel.panel-purple.active,
+.tui-panel.panel-purple:hover {
+  @apply border-purple;
+  box-shadow: 0 0 10px rgba(185, 103, 255, 0.2);
+}
+
+.tui-panel.panel-purple.active::before,
+.tui-panel.panel-purple:hover::before {
+  @apply text-purple;
+}
+
+.tui-panel.panel-purple::before {
+  color: #2d1b4e;
+}
+
+/* ── TUI Row (hoverable list/timeline entries) ── */
+.tui-row {
+  @apply border-l-2 border-dim-green pl-4 py-3 transition-all duration-200 cursor-default;
+}
+
+.tui-row:hover {
+  @apply border-l-pink bg-dark-pink;
+}
+
+.tui-row:hover .tui-row-title {
+  @apply text-pink glow-text-pink;
+}
+
+/* ── TUI Button ── */
+.tui-button {
+  @apply relative inline-block border-2 border-primary px-6 py-3 font-header text-xs uppercase text-primary tracking-wider transition-all duration-200;
+}
+
+.tui-button:hover {
+  @apply bg-primary text-black border-primary;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+.tui-button:hover::after {
+  content: "█";
+  @apply animate-blink ml-2;
+}
+
+/* ── TUI Tab (nav items) ── */
+.tui-tab {
+  @apply relative border border-dim-green px-3 py-1.5 font-header text-xs uppercase text-primary tracking-wider transition-all duration-200 cursor-pointer;
+}
+
+.tui-tab:hover {
+  @apply bg-teal text-black border-teal;
+}
+
+.tui-tab.active {
+  @apply bg-primary text-black border-primary;
+}
+
+.tui-tab:hover::before {
+  content: ">";
+  @apply absolute -left-4 text-primary;
+}
+
+/* Tab color variants */
+.tui-tab.tui-tab-teal {
+  @apply text-teal;
+  border-color: #0d3f4f;
+}
+
+.tui-tab.tui-tab-teal:hover {
+  @apply bg-teal text-black border-teal;
+}
+
+.tui-tab.tui-tab-teal.active {
+  @apply bg-teal text-black border-teal;
+  box-shadow: 0 0 10px rgba(1, 205, 254, 0.3);
+}
+
+.tui-tab.tui-tab-pink {
+  @apply text-pink;
+  border-color: #4a0d2e;
+}
+
+.tui-tab.tui-tab-pink:hover {
+  @apply bg-pink text-black border-pink;
+}
+
+.tui-tab.tui-tab-pink.active {
+  @apply bg-pink text-black border-pink;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.3);
+}
+
+.tui-tab.tui-tab-purple {
+  @apply text-purple;
+  border-color: #2d1b4e;
+}
+
+.tui-tab.tui-tab-purple:hover {
+  @apply bg-purple text-black border-purple;
+}
+
+.tui-tab.tui-tab-purple.active {
+  @apply bg-purple text-black border-purple;
+  box-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
+}
+
+.tui-tab.tui-tab-green {
+  @apply text-primary;
+  border-color: #0d4f0d;
+}
+
+.tui-tab.tui-tab-green:hover {
+  @apply bg-primary text-black border-primary;
+}
+
+.tui-tab.tui-tab-green.active {
+  @apply bg-primary text-black border-primary;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* ── Status Bar Links ── */
+.status-link {
+  @apply text-dim-green transition-colors duration-200;
+}
+
+.status-link-teal:hover {
+  @apply text-teal font-bold;
+  text-shadow: 0 0 5px #01cdfe;
+}
+
+.status-link-pink:hover {
+  @apply text-pink font-bold;
+  text-shadow: 0 0 5px #ff2d95;
+}
+
+.status-link-purple:hover {
+  @apply text-purple font-bold;
+  text-shadow: 0 0 5px #b967ff;
+}
+
+.status-link-green:hover {
+  @apply text-primary font-bold;
+  text-shadow: 0 0 5px #00ff41;
+}
+
+/* ── Status Bar (tmux-style) ── */
+.status-bar {
+  @apply fixed bottom-0 left-0 right-0 z-50 border-t border-dim-green py-1.5 px-4 font-mono text-sm;
+  background-color: #111111;
+}
+
+.status-bar-section {
+  @apply text-dim-green transition-colors duration-200;
+}
+
+.status-bar-section.active {
+  @apply text-pink font-bold glow-text-pink;
+}
+
+/* ── Terminal Window (video embeds) ── */
+.terminal-window {
+  @apply relative border border-dim-green bg-grey-50 overflow-hidden transition-all duration-300;
+}
+
+.terminal-window-bar {
+  @apply flex items-center gap-2 px-3 py-2 border-b border-dim-green bg-grey-20;
+}
+
+.terminal-window-dot {
+  @apply w-3 h-3 rounded-full bg-grey-30 transition-colors duration-300;
+}
+
+.terminal-window:hover .terminal-window-dot:nth-child(1) {
+  @apply bg-red;
+  box-shadow: 0 0 6px #ff0040;
+}
+
+.terminal-window:hover .terminal-window-dot:nth-child(2) {
+  @apply bg-amber;
+  box-shadow: 0 0 6px #ffb000;
+}
+
+.terminal-window:hover .terminal-window-dot:nth-child(3) {
+  @apply bg-primary;
+  box-shadow: 0 0 6px #00ff41;
+}
+
+.terminal-window:hover {
+  @apply border-teal;
+  box-shadow: 0 0 10px rgba(1, 205, 254, 0.2);
+}
+
+/* ── ASCII Skill Bar ── */
+.skill-bar {
+  @apply font-body text-lg transition-all duration-300;
+  color: #00ff41;
+}
+
+.skill-bar:hover {
+  text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+}
+
+.skill-bar:hover .skill-pct {
+  @apply text-amber glow-text-amber;
+}
+
+/* ── Social Icon Hover ── */
+.social-icon {
+  @apply text-primary transition-all duration-200;
+}
+
+.social-icon:hover {
+  @apply text-pink;
+  text-shadow: 0 0 8px #ff2d95;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0d4f0d;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
+}
+
+/* ── Selection ── */
+::selection {
+  background: #ff2d95;
+  color: #0a0a0a;
+}
+
+/* ── Prose Overrides ── */
+.prose {
+  @apply text-primary font-body;
+  --tw-prose-body: #00ff41;
+  --tw-prose-headings: #ff2d95;
+  --tw-prose-links: #01cdfe;
+  --tw-prose-bold: #ff71ce;
+  --tw-prose-code: #b967ff;
+  --tw-prose-pre-bg: #111111;
+  --tw-prose-pre-code: #00ff41;
+  --tw-prose-bullets: #0d4f0d;
+  --tw-prose-hr: #0d4f0d;
+  --tw-prose-quotes: #33cc33;
+  --tw-prose-quote-borders: #0d4f0d;
+  --tw-prose-counters: #0d4f0d;
+  --tw-prose-th-borders: #0d4f0d;
+  --tw-prose-td-borders: #0d4f0d;
+}
+
+.prose a {
+  @apply text-teal;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-shadow: 0 0 5px #01cdfe;
+  text-decoration: underline;
+}
+
+.prose pre {
+  @apply border border-dim-green;
+}
+
+.prose code {
+  @apply text-purple;
+}
+
+/* ── Mobile Menu ── */
+.mobile-menu-panel {
+  @apply bg-grey-20 border-l border-dim-green;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .glow-text,
+  .glow-text-subtle,
+  .glow-text-amber,
+  .glow-text-cyan,
+  .glow-text-pink,
+  .glow-text-purple,
+  .glow-text-teal {
+    text-shadow: none;
+  }
+}
+
 @tailwind utilities;
