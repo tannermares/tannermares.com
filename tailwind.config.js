@@ -5,8 +5,9 @@ module.exports = {
   safelist: ["active"],
   theme: {
     fontFamily: {
-      header: ["Raleway", "sans-serif"],
-      body: ["Open Sans", "sans-serif"],
+      header: ['"Press Start 2P"', "monospace"],
+      body: ["VT323", "monospace"],
+      mono: ['"Share Tech Mono"', "monospace"],
     },
 
     screens: {
@@ -16,23 +17,29 @@ module.exports = {
 
     colors: {
       transparent: "transparent",
-      primary: "#5540af",
-      secondary: "#252426",
-      white: "#ffffff",
-      black: "#000000",
-      yellow: "#f9e71c",
-      lila: "#e6e5ec",
-      "grey-10": "#6c6b6d",
-      "grey-20": "#7c7c7c",
-      "grey-30": "#919091",
-      "grey-40": "#929293",
-      "grey-50": "#f4f3f8",
-      "grey-60": "#edebf6",
-      "grey-70": "#d8d8d8",
-      "hero-gradient-from": "rgba(85, 64, 174, 0.95)",
-      "hero-gradient-to": "rgba(65, 47, 144, 0.93)",
-      "blog-gradient-from": "#8f9098",
-      "blog-gradient-to": "#222222",
+      primary: "#00ff41",
+      secondary: "#0a0a0a",
+      white: "#e0e0e0",
+      black: "#0a0a0a",
+      yellow: "#ffb000",
+      amber: "#ffb000",
+      cyan: "#00ffff",
+      red: "#ff0040",
+      "dim-green": "#0d4f0d",
+      "mid-green": "#33cc33",
+      "dark-green": "#0a3a0a",
+      "grey-10": "#1a1a1a",
+      "grey-20": "#222222",
+      "grey-30": "#2a2a2a",
+      "grey-40": "#0d4f0d",
+      "grey-50": "#0d0d0d",
+      "grey-60": "#111111",
+      "grey-70": "#0d4f0d",
+      lila: "#0d4f0d",
+      "hero-gradient-from": "rgba(0, 255, 65, 0.05)",
+      "hero-gradient-to": "rgba(0, 0, 0, 0.95)",
+      "blog-gradient-from": "#0d4f0d",
+      "blog-gradient-to": "#0a0a0a",
     },
 
     container: {
@@ -41,8 +48,8 @@ module.exports = {
     },
 
     shadows: {
-      default: "0 2px 18px rgba(0, 0, 0, 0.06)",
-      md: "0 -3px 36px rgba(0, 0, 0, 0.12)",
+      default: "0 0 10px rgba(0, 255, 65, 0.3)",
+      md: "0 0 20px rgba(0, 255, 65, 0.4)",
     },
 
     extend: {
@@ -92,6 +99,35 @@ module.exports = {
       },
       inset: {
         "2/5": "40%",
+      },
+      keyframes: {
+        flicker: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.8" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { textShadow: "0 0 5px #00ff41, 0 0 10px #00ff41" },
+          "50%": { textShadow: "0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41" },
+        },
+        "border-glow": {
+          "0%, 100%": { borderColor: "#00ff41", boxShadow: "0 0 5px rgba(0, 255, 65, 0.3)" },
+          "50%": { borderColor: "#33cc33", boxShadow: "0 0 15px rgba(0, 255, 65, 0.5)" },
+        },
+        scanline: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(100vh)" },
+        },
+      },
+      animation: {
+        flicker: "flicker 3s ease-in-out infinite",
+        blink: "blink 1s step-end infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "border-glow": "border-glow 2s ease-in-out infinite",
+        scanline: "scanline 8s linear infinite",
       },
     },
   },

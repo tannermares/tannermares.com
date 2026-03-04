@@ -5,4 +5,272 @@ html {
   @apply font-body antialiased;
 }
 
+/* ── Base styles ── */
+body {
+  @apply bg-black text-primary;
+  image-rendering: auto;
+}
+
+/* ── CRT Scanline Overlay ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Glow Text ── */
+.glow-text {
+  text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41;
+}
+
+.glow-text-subtle {
+  text-shadow: 0 0 3px #00ff41, 0 0 6px rgba(0, 255, 65, 0.4);
+}
+
+.glow-text-amber {
+  text-shadow: 0 0 5px #ffb000, 0 0 10px #ffb000;
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+/* ── Terminal Cursor ── */
+.terminal-cursor::after {
+  content: "█";
+  @apply text-primary animate-blink ml-1;
+}
+
+/* ── TUI Panel ── */
+.tui-panel {
+  @apply relative border border-dim-green bg-grey-50 p-4 sm:p-6 transition-all duration-300;
+}
+
+.tui-panel::before {
+  content: attr(data-label);
+  @apply absolute -top-3 left-4 px-2 font-header text-xs tracking-wider;
+  background-color: #0d0d0d;
+  color: #0d4f0d;
+}
+
+.tui-panel.active {
+  @apply border-primary;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+}
+
+.tui-panel.active::before {
+  @apply text-primary;
+}
+
+/* ── TUI Row (hoverable list/timeline entries) ── */
+.tui-row {
+  @apply border-l-2 border-dim-green pl-4 py-3 transition-all duration-200 cursor-default;
+}
+
+.tui-row:hover {
+  @apply border-l-primary bg-dark-green;
+}
+
+.tui-row:hover .tui-row-title {
+  @apply glow-text-subtle;
+}
+
+/* ── TUI Button ── */
+.tui-button {
+  @apply relative inline-block border-2 border-primary px-6 py-3 font-header text-xs uppercase text-primary tracking-wider transition-all duration-200;
+}
+
+.tui-button:hover {
+  @apply bg-primary text-black;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+.tui-button:hover::after {
+  content: "█";
+  @apply animate-blink ml-2;
+}
+
+/* ── TUI Tab (nav items) ── */
+.tui-tab {
+  @apply relative border border-dim-green px-3 py-1.5 font-header text-xs uppercase text-primary tracking-wider transition-all duration-200 cursor-pointer;
+}
+
+.tui-tab:hover,
+.tui-tab.active {
+  @apply bg-primary text-black border-primary;
+}
+
+.tui-tab:hover::before {
+  content: ">";
+  @apply absolute -left-4 text-primary;
+}
+
+/* ── Status Bar (tmux-style) ── */
+.status-bar {
+  @apply fixed bottom-0 left-0 right-0 z-50 border-t border-dim-green py-1.5 px-4 font-mono text-sm;
+  background-color: #111111;
+}
+
+.status-bar-section {
+  @apply text-dim-green transition-colors duration-200;
+}
+
+.status-bar-section.active {
+  @apply text-primary font-bold glow-text-subtle;
+}
+
+/* ── Terminal Window (video embeds) ── */
+.terminal-window {
+  @apply relative border border-dim-green bg-grey-50 overflow-hidden transition-all duration-300;
+}
+
+.terminal-window-bar {
+  @apply flex items-center gap-2 px-3 py-2 border-b border-dim-green bg-grey-20;
+}
+
+.terminal-window-dot {
+  @apply w-3 h-3 rounded-full bg-grey-30 transition-colors duration-300;
+}
+
+.terminal-window:hover .terminal-window-dot:nth-child(1) {
+  @apply bg-red;
+  box-shadow: 0 0 6px #ff0040;
+}
+
+.terminal-window:hover .terminal-window-dot:nth-child(2) {
+  @apply bg-amber;
+  box-shadow: 0 0 6px #ffb000;
+}
+
+.terminal-window:hover .terminal-window-dot:nth-child(3) {
+  @apply bg-primary;
+  box-shadow: 0 0 6px #00ff41;
+}
+
+.terminal-window:hover {
+  @apply border-primary;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+}
+
+/* ── ASCII Skill Bar ── */
+.skill-bar {
+  @apply font-body text-lg transition-all duration-300;
+  color: #00ff41;
+}
+
+.skill-bar:hover {
+  text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+}
+
+.skill-bar:hover .skill-pct {
+  @apply text-amber glow-text-amber;
+}
+
+/* ── Social Icon Hover ── */
+.social-icon {
+  @apply text-primary transition-all duration-200;
+}
+
+.social-icon:hover {
+  @apply text-amber;
+  text-shadow: 0 0 8px #ffb000;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0d4f0d;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
+}
+
+/* ── Selection ── */
+::selection {
+  background: #00ff41;
+  color: #0a0a0a;
+}
+
+/* ── Prose Overrides ── */
+.prose {
+  @apply text-primary font-body;
+  --tw-prose-body: #00ff41;
+  --tw-prose-headings: #00ff41;
+  --tw-prose-links: #00ffff;
+  --tw-prose-bold: #33cc33;
+  --tw-prose-code: #ffb000;
+  --tw-prose-pre-bg: #111111;
+  --tw-prose-pre-code: #00ff41;
+  --tw-prose-bullets: #0d4f0d;
+  --tw-prose-hr: #0d4f0d;
+  --tw-prose-quotes: #33cc33;
+  --tw-prose-quote-borders: #0d4f0d;
+  --tw-prose-counters: #0d4f0d;
+  --tw-prose-th-borders: #0d4f0d;
+  --tw-prose-td-borders: #0d4f0d;
+}
+
+.prose a {
+  @apply text-cyan;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-shadow: 0 0 5px #00ffff;
+  text-decoration: underline;
+}
+
+.prose pre {
+  @apply border border-dim-green;
+}
+
+.prose code {
+  @apply text-amber;
+}
+
+/* ── Mobile Menu ── */
+.mobile-menu-panel {
+  @apply bg-grey-20 border-l border-dim-green;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .glow-text,
+  .glow-text-subtle,
+  .glow-text-amber,
+  .glow-text-cyan {
+    text-shadow: none;
+  }
+}
+
 @tailwind utilities;
