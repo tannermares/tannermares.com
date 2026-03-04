@@ -40,6 +40,8 @@
     document.addEventListener('alpine:init', () => {
       Alpine.data('portfolio', () => ({
         mobileMenu: false,
+        triggerNavItem(id) { this.$scroll(id) },
+        triggerMobileNavItem(id) { this.mobileMenu = false; this.$scroll(id) },
       }));
     });
   </script>
@@ -47,9 +49,6 @@
 <body :class="{ 'overflow-hidden max-h-screen': mobileMenu }" class="relative pb-10"
   x-data="portfolio"
   <div id="main" class="relative">
-    <div
-      x-data="{ triggerNavItem(id) { $scroll(id) }, triggerMobileNavItem(id) { mobileMenu = false; this.triggerNavItem(id) }}">
-
       <!-- ── NAV ── -->
       <div class="w-full z-50 top-0 py-3 sm:py-4 bg-black border-b border-dim-green sticky">
         <div class="container flex items-center justify-between">
@@ -168,7 +167,7 @@
               </div>
 
               <!-- Scroll hint -->
-              <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hero-fade-in" style="animation-delay: 1.4s;">
+              <div class="mt-12 z-20 hero-fade-in" style="animation-delay: 1.4s;">
                 <span @click="triggerNavItem('#about')" class="cursor-pointer font-mono text-xs text-dim-green hover:text-primary transition-colors duration-300 flex flex-col items-center gap-2">
                   <span class="tracking-widest">SCROLL</span>
                   <span class="animate-bounce text-lg">v</span>
@@ -364,7 +363,6 @@
           </div>
         </div>
       </div>
-    </div>
 
     <!-- ── FOOTER ── -->
     <div class="border-t border-dim-green">

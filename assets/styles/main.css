@@ -90,7 +90,7 @@ body::after {
   height: 180px;
   border-radius: 50%;
   padding: 4px;
-  background: conic-gradient(from 0deg, #00ff41, #01cdfe, #b967ff, #ff2d95, #00ff41);
+  background: #00ff41;
   animation: hero-ring-spin 6s linear infinite;
 }
 
@@ -118,7 +118,7 @@ body::after {
   position: absolute;
   inset: -8px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, #00ff41, #01cdfe, #b967ff, #ff2d95, #00ff41);
+  background: #00ff41;
   opacity: 0.25;
   filter: blur(16px);
   animation: hero-ring-spin 6s linear infinite;
@@ -250,8 +250,8 @@ body::after {
 }
 
 .tui-button:hover {
-  @apply bg-pink text-black border-pink;
-  box-shadow: 0 0 15px rgba(255, 45, 149, 0.4);
+  @apply bg-primary text-black border-primary;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
 }
 
 .tui-button:hover::after {
