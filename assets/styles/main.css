@@ -44,6 +44,119 @@ body::after {
   text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
 }
 
+.glow-text-pink {
+  text-shadow: 0 0 5px #ff2d95, 0 0 10px #ff2d95;
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 5px #b967ff, 0 0 10px #b967ff;
+}
+
+.glow-text-teal {
+  text-shadow: 0 0 5px #01cdfe, 0 0 10px #01cdfe;
+}
+
+/* ── Hero Section ── */
+.hero-section {
+  background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.03) 0%, #0a0a0a 70%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-glow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(1, 205, 254, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Hero Avatar ── */
+.hero-avatar-ring {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  padding: 4px;
+  background: conic-gradient(from 0deg, #00ff41, #01cdfe, #b967ff, #ff2d95, #00ff41);
+  animation: hero-ring-spin 6s linear infinite;
+}
+
+@keyframes hero-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.hero-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #0a0a0a;
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.3) contrast(1.1);
+}
+
+.hero-avatar-ring::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #00ff41, #01cdfe, #b967ff, #ff2d95, #00ff41);
+  opacity: 0.25;
+  filter: blur(16px);
+  animation: hero-ring-spin 6s linear infinite;
+  z-index: -1;
+}
+
+/* ── Hero Fade In ── */
+.hero-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-reveal 0.6s ease-out forwards;
+}
+
+@keyframes hero-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Hero Social Links ── */
+.hero-social-link {
+  @apply text-dim-green transition-all duration-200;
+}
+
+.hero-social-link:hover {
+  @apply text-teal;
+  text-shadow: 0 0 10px #01cdfe;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 640px) {
+  .hero-avatar-ring {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 /* ── Terminal Cursor ── */
 .terminal-cursor::after {
   content: "█";
@@ -62,13 +175,60 @@ body::after {
   color: #0d4f0d;
 }
 
-.tui-panel.active {
+.tui-panel.active,
+.tui-panel:hover {
   @apply border-primary;
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
 }
 
-.tui-panel.active::before {
+.tui-panel.active::before,
+.tui-panel:hover::before {
   @apply text-primary;
+}
+
+.tui-panel.panel-pink.active,
+.tui-panel.panel-pink:hover {
+  @apply border-pink;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.2);
+}
+
+.tui-panel.panel-pink.active::before,
+.tui-panel.panel-pink:hover::before {
+  @apply text-pink;
+}
+
+.tui-panel.panel-pink::before {
+  color: #4a0d2e;
+}
+
+.tui-panel.panel-teal.active,
+.tui-panel.panel-teal:hover {
+  @apply border-teal;
+  box-shadow: 0 0 10px rgba(1, 205, 254, 0.2);
+}
+
+.tui-panel.panel-teal.active::before,
+.tui-panel.panel-teal:hover::before {
+  @apply text-teal;
+}
+
+.tui-panel.panel-teal::before {
+  color: #0d3f4f;
+}
+
+.tui-panel.panel-purple.active,
+.tui-panel.panel-purple:hover {
+  @apply border-purple;
+  box-shadow: 0 0 10px rgba(185, 103, 255, 0.2);
+}
+
+.tui-panel.panel-purple.active::before,
+.tui-panel.panel-purple:hover::before {
+  @apply text-purple;
+}
+
+.tui-panel.panel-purple::before {
+  color: #2d1b4e;
 }
 
 /* ── TUI Row (hoverable list/timeline entries) ── */
@@ -77,11 +237,11 @@ body::after {
 }
 
 .tui-row:hover {
-  @apply border-l-primary bg-dark-green;
+  @apply border-l-pink bg-dark-pink;
 }
 
 .tui-row:hover .tui-row-title {
-  @apply glow-text-subtle;
+  @apply text-pink glow-text-pink;
 }
 
 /* ── TUI Button ── */
@@ -90,8 +250,8 @@ body::after {
 }
 
 .tui-button:hover {
-  @apply bg-primary text-black;
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+  @apply bg-pink text-black border-pink;
+  box-shadow: 0 0 15px rgba(255, 45, 149, 0.4);
 }
 
 .tui-button:hover::after {
@@ -104,7 +264,10 @@ body::after {
   @apply relative border border-dim-green px-3 py-1.5 font-header text-xs uppercase text-primary tracking-wider transition-all duration-200 cursor-pointer;
 }
 
-.tui-tab:hover,
+.tui-tab:hover {
+  @apply bg-teal text-black border-teal;
+}
+
 .tui-tab.active {
   @apply bg-primary text-black border-primary;
 }
@@ -112,6 +275,88 @@ body::after {
 .tui-tab:hover::before {
   content: ">";
   @apply absolute -left-4 text-primary;
+}
+
+/* Tab color variants */
+.tui-tab.tui-tab-teal {
+  @apply text-teal;
+  border-color: #0d3f4f;
+}
+
+.tui-tab.tui-tab-teal:hover {
+  @apply bg-teal text-black border-teal;
+}
+
+.tui-tab.tui-tab-teal.active {
+  @apply bg-teal text-black border-teal;
+  box-shadow: 0 0 10px rgba(1, 205, 254, 0.3);
+}
+
+.tui-tab.tui-tab-pink {
+  @apply text-pink;
+  border-color: #4a0d2e;
+}
+
+.tui-tab.tui-tab-pink:hover {
+  @apply bg-pink text-black border-pink;
+}
+
+.tui-tab.tui-tab-pink.active {
+  @apply bg-pink text-black border-pink;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.3);
+}
+
+.tui-tab.tui-tab-purple {
+  @apply text-purple;
+  border-color: #2d1b4e;
+}
+
+.tui-tab.tui-tab-purple:hover {
+  @apply bg-purple text-black border-purple;
+}
+
+.tui-tab.tui-tab-purple.active {
+  @apply bg-purple text-black border-purple;
+  box-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
+}
+
+.tui-tab.tui-tab-green {
+  @apply text-primary;
+  border-color: #0d4f0d;
+}
+
+.tui-tab.tui-tab-green:hover {
+  @apply bg-primary text-black border-primary;
+}
+
+.tui-tab.tui-tab-green.active {
+  @apply bg-primary text-black border-primary;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* ── Status Bar Links ── */
+.status-link {
+  @apply text-dim-green transition-colors duration-200;
+}
+
+.status-link-teal:hover {
+  @apply text-teal font-bold;
+  text-shadow: 0 0 5px #01cdfe;
+}
+
+.status-link-pink:hover {
+  @apply text-pink font-bold;
+  text-shadow: 0 0 5px #ff2d95;
+}
+
+.status-link-purple:hover {
+  @apply text-purple font-bold;
+  text-shadow: 0 0 5px #b967ff;
+}
+
+.status-link-green:hover {
+  @apply text-primary font-bold;
+  text-shadow: 0 0 5px #00ff41;
 }
 
 /* ── Status Bar (tmux-style) ── */
@@ -125,7 +370,7 @@ body::after {
 }
 
 .status-bar-section.active {
-  @apply text-primary font-bold glow-text-subtle;
+  @apply text-pink font-bold glow-text-pink;
 }
 
 /* ── Terminal Window (video embeds) ── */
@@ -157,8 +402,8 @@ body::after {
 }
 
 .terminal-window:hover {
-  @apply border-primary;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+  @apply border-teal;
+  box-shadow: 0 0 10px rgba(1, 205, 254, 0.2);
 }
 
 /* ── ASCII Skill Bar ── */
@@ -181,8 +426,8 @@ body::after {
 }
 
 .social-icon:hover {
-  @apply text-amber;
-  text-shadow: 0 0 8px #ffb000;
+  @apply text-pink;
+  text-shadow: 0 0 8px #ff2d95;
 }
 
 /* ── Custom Scrollbar ── */
@@ -205,7 +450,7 @@ body::after {
 
 /* ── Selection ── */
 ::selection {
-  background: #00ff41;
+  background: #ff2d95;
   color: #0a0a0a;
 }
 
@@ -213,10 +458,10 @@ body::after {
 .prose {
   @apply text-primary font-body;
   --tw-prose-body: #00ff41;
-  --tw-prose-headings: #00ff41;
-  --tw-prose-links: #00ffff;
-  --tw-prose-bold: #33cc33;
-  --tw-prose-code: #ffb000;
+  --tw-prose-headings: #ff2d95;
+  --tw-prose-links: #01cdfe;
+  --tw-prose-bold: #ff71ce;
+  --tw-prose-code: #b967ff;
   --tw-prose-pre-bg: #111111;
   --tw-prose-pre-code: #00ff41;
   --tw-prose-bullets: #0d4f0d;
@@ -229,12 +474,12 @@ body::after {
 }
 
 .prose a {
-  @apply text-cyan;
+  @apply text-teal;
   text-decoration: none;
 }
 
 .prose a:hover {
-  text-shadow: 0 0 5px #00ffff;
+  text-shadow: 0 0 5px #01cdfe;
   text-decoration: underline;
 }
 
@@ -243,7 +488,7 @@ body::after {
 }
 
 .prose code {
-  @apply text-amber;
+  @apply text-purple;
 }
 
 /* ── Mobile Menu ── */
@@ -268,7 +513,10 @@ body::after {
   .glow-text,
   .glow-text-subtle,
   .glow-text-amber,
-  .glow-text-cyan {
+  .glow-text-cyan,
+  .glow-text-pink,
+  .glow-text-purple,
+  .glow-text-teal {
     text-shadow: none;
   }
 }

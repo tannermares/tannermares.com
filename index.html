@@ -35,12 +35,17 @@
   <link crossorigin="anonymous" href="/assets/styles/main.min.css" media="screen" rel="stylesheet" />
 
   <script defer src="https://unpkg.com/@alpine-collective/toolkit@1.0.0/dist/cdn.min.js"></script>
-  <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('portfolio', () => ({
+        mobileMenu: false,
+      }));
+    });
+  </script>
 </head>
-
 <body :class="{ 'overflow-hidden max-h-screen': mobileMenu }" class="relative pb-10"
-  x-data="{ mobileMenu: false, activeSection: 'hero' }">
+  x-data="portfolio"
   <div id="main" class="relative">
     <div
       x-data="{ triggerNavItem(id) { $scroll(id) }, triggerMobileNavItem(id) { mobileMenu = false; this.triggerNavItem(id) }}">
@@ -54,20 +59,16 @@
           <div class="hidden lg:block">
             <ul class="flex items-center gap-2">
               <li>
-                <span @click="triggerNavItem('#about')" class="tui-tab"
-                  :class="{ 'active': activeSection === 'about' }">About</span>
+                <span @click="triggerNavItem('#about')" class="tui-tab tui-tab-teal">About</span>
               </li>
               <li>
-                <span @click="triggerNavItem('#work')" class="tui-tab"
-                  :class="{ 'active': activeSection === 'work' }">Work</span>
+                <span @click="triggerNavItem('#work')" class="tui-tab tui-tab-pink">Work</span>
               </li>
               <li>
-                <span @click="triggerNavItem('#videos')" class="tui-tab"
-                  :class="{ 'active': activeSection === 'videos' }">Videos</span>
+                <span @click="triggerNavItem('#videos')" class="tui-tab tui-tab-purple">Videos</span>
               </li>
               <li>
-                <span @click="triggerNavItem('#contact')" class="tui-tab"
-                  :class="{ 'active': activeSection === 'contact' }">Contact</span>
+                <span @click="triggerNavItem('#contact')" class="tui-tab tui-tab-green">Contact</span>
               </li>
             </ul>
           </div>
@@ -106,68 +107,89 @@
 
       <div>
         <!-- ── HERO ── -->
-        <div class="bg-black py-16 sm:py-24 lg:py-32" id="hero"
-          x-intersect:enter="activeSection = 'hero'">
-          <div class="container">
-            <div class="tui-panel active" data-label="WELCOME">
-              <div class="flex flex-col items-center lg:flex-row lg:items-start gap-8">
-                <div class="rounded border-2 border-primary p-1 shrink-0" style="box-shadow: 0 0 15px rgba(0,255,65,0.3);">
-                  <img src="/assets/img/me.jpeg" class="h-48 sm:h-56 grayscale brightness-110 contrast-125" alt="author"
-                    style="filter: grayscale(1) brightness(1.1) contrast(1.25) sepia(0.3) hue-rotate(70deg);" />
+        <div class="hero-section relative min-h-screen flex items-center overflow-hidden" id="hero">
+          <!-- Animated grid background -->
+          <div class="hero-grid"></div>
+          <!-- Radial glow behind photo -->
+          <div class="hero-glow"></div>
+
+          <div class="container relative z-10">
+            <div class="flex flex-col items-center text-center py-12">
+              <!-- Boot sequence hint -->
+              <p class="font-mono text-dim-green text-xs sm:text-sm mb-8 tracking-widest hero-fade-in" style="animation-delay: 0.1s;">
+                <span class="text-mid-green">SYSTEM</span> <span class="text-dim-green">//</span> BOOT SEQUENCE COMPLETE
+              </p>
+
+              <!-- Photo with animated ring -->
+              <div class="hero-avatar-ring mb-10 hero-fade-in" style="animation-delay: 0.3s;">
+                <div class="hero-avatar-inner">
+                  <img src="/assets/img/me.jpeg" class="hero-avatar-img" alt="Tanner Mares" />
                 </div>
-                <div class="text-center lg:text-left">
-                  <pre class="font-mono text-primary text-xs sm:text-sm glow-text-subtle mb-6 overflow-x-auto hidden sm:block">
- _____                              __  __
-|_   _|_ _ _ __  _ __   ___ _ __   |  \/  | __ _ _ __ ___  ___
-  | |/ _` | '_ \| '_ \ / _ \ '__|  | |\/| |/ _` | '__/ _ \/ __|
-  | | (_| | | | | | | |  __/ |     | |  | | (_| | | |  __/\__ \
-  |_|\__,_|_| |_|_| |_|\___|_|     |_|  |_|\__,_|_|  \___||___/
-                  </pre>
-                  <p class="font-mono text-dim-green text-sm mb-2">$ whoami</p>
-                  <h1 class="font-header text-lg sm:text-xl md:text-2xl text-primary glow-text leading-relaxed">
-                    Tanner Mares
-                  </h1>
-                  <p class="font-mono text-dim-green text-sm mt-2">$ cat role.txt</p>
-                  <p class="font-body text-2xl sm:text-3xl text-mid-green mt-1">
-                    Web Developer <span class="terminal-cursor"></span>
-                  </p>
-                  <div class="flex items-center justify-center lg:justify-start pt-6 gap-4">
-                    <a href="https://github.com/tannermares" target="_blank">
-                      <i class="bx bxl-github text-2xl social-icon"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/tannermares" target="_blank">
-                      <i class="bx bxl-linkedin text-2xl social-icon"></i>
-                    </a>
-                    <a href="https://www.twitch.tv/tannermares" target="_blank">
-                      <i class="bx bxl-twitch text-2xl social-icon"></i>
-                    </a>
-                    <a href="https://x.com/tannermares" target="_blank">
-                      <i class="bx bxl-twitter text-2xl social-icon"></i>
-                    </a>
-                    <a href="https://www.youtube.com/tannermares" target="_blank">
-                      <i class="bx bxl-youtube text-2xl social-icon"></i>
-                    </a>
-                  </div>
+              </div>
+
+              <!-- Name -->
+              <h1 class="font-header text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary glow-text leading-relaxed mb-4 hero-fade-in" style="animation-delay: 0.5s;">
+                Tanner Mares
+              </h1>
+
+              <!-- Terminal role line -->
+              <div class="hero-fade-in" style="animation-delay: 0.7s;">
+                <div class="inline-flex items-center gap-3 border border-dim-green px-5 py-2.5 bg-grey-50">
+                  <span class="font-mono text-dim-green text-sm hidden sm:inline">$</span>
+                  <span class="font-body text-2xl sm:text-3xl md:text-4xl text-teal tracking-wide">
+                    Web Developer
+                  </span>
+                  <span class="terminal-cursor"></span>
                 </div>
+              </div>
+
+              <!-- Tagline -->
+              <p class="font-mono text-mid-green text-sm sm:text-base mt-6 mb-10 max-w-lg hero-fade-in" style="animation-delay: 0.9s;">
+                Building for the web with Ruby on Rails & React
+              </p>
+
+              <!-- Social icons -->
+              <div class="flex items-center gap-6 hero-fade-in" style="animation-delay: 1.1s;">
+                <a href="https://github.com/tannermares" target="_blank" class="hero-social-link">
+                  <i class="bx bxl-github text-3xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/tannermares" target="_blank" class="hero-social-link">
+                  <i class="bx bxl-linkedin text-3xl"></i>
+                </a>
+                <a href="https://www.twitch.tv/tannermares" target="_blank" class="hero-social-link">
+                  <i class="bx bxl-twitch text-3xl"></i>
+                </a>
+                <a href="https://x.com/tannermares" target="_blank" class="hero-social-link">
+                  <i class="bx bxl-twitter text-3xl"></i>
+                </a>
+                <a href="https://www.youtube.com/tannermares" target="_blank" class="hero-social-link">
+                  <i class="bx bxl-youtube text-3xl"></i>
+                </a>
+              </div>
+
+              <!-- Scroll hint -->
+              <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hero-fade-in" style="animation-delay: 1.4s;">
+                <span @click="triggerNavItem('#about')" class="cursor-pointer font-mono text-xs text-dim-green hover:text-primary transition-colors duration-300 flex flex-col items-center gap-2">
+                  <span class="tracking-widest">SCROLL</span>
+                  <span class="animate-bounce text-lg">v</span>
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- ── ABOUT ── -->
-        <div class="bg-black py-16 md:py-20" id="about"
-          x-intersect:enter="activeSection = 'about'">
+        <div class="bg-black py-16 md:py-20" id="about">
           <div class="container">
-            <div class="tui-panel" data-label="ABOUT"
-              :class="{ 'active': activeSection === 'about' }">
+            <div class="tui-panel panel-teal" data-label="ABOUT">
               <div class="flex flex-col lg:flex-row gap-10">
                 <div class="w-full lg:w-3/5">
                   <p class="font-mono text-dim-green text-sm mb-2">$ cat about.txt</p>
-                  <h2 class="font-header text-lg sm:text-xl uppercase text-primary glow-text-subtle mb-6">
+                  <h2 class="font-header text-lg sm:text-xl uppercase text-teal glow-text-teal mb-6">
                     Who am I?
                   </h2>
                   <p class="font-mono text-dim-green text-sm mb-2">$ echo $ROLE</p>
-                  <h4 class="font-body text-2xl text-mid-green mb-4">I'm Tanner Mares, a Web Developer</h4>
+                  <h4 class="font-body text-2xl text-teal mb-4">I'm Tanner Mares, a Web Developer</h4>
                   <p class="font-body text-xl leading-relaxed text-primary">A software engineer with over ten years of
                     programming experience, specializing in Ruby on Rails and React. Skilled in leading teams to enhance
                     product quality and engineering excellence. Passionate about mentoring developers, focusing on best
@@ -178,31 +200,31 @@
 
                   <div class="skill-bar mb-4">
                     <div class="flex items-end justify-between mb-1">
-                      <span class="font-body text-xl uppercase text-primary">Ruby On Rails</span>
-                      <span class="skill-pct font-body text-2xl font-bold text-primary transition-colors duration-200">85%</span>
+                      <span class="font-body text-xl uppercase text-teal">Ruby On Rails</span>
+                      <span class="skill-pct font-body text-2xl font-bold text-teal transition-colors duration-200">85%</span>
                     </div>
                     <div class="font-mono text-sm tracking-widest">
-                      <span class="text-primary">[█████████████████░░░]</span>
+                      <span class="text-teal">[█████████████████░░░]</span>
                     </div>
                   </div>
 
                   <div class="skill-bar mb-4">
                     <div class="flex items-end justify-between mb-1">
-                      <span class="font-body text-xl uppercase text-primary">React</span>
-                      <span class="skill-pct font-body text-2xl font-bold text-primary transition-colors duration-200">80%</span>
+                      <span class="font-body text-xl uppercase text-pink">React</span>
+                      <span class="skill-pct font-body text-2xl font-bold text-pink transition-colors duration-200">80%</span>
                     </div>
                     <div class="font-mono text-sm tracking-widest">
-                      <span class="text-primary">[████████████████░░░░]</span>
+                      <span class="text-pink">[████████████████░░░░]</span>
                     </div>
                   </div>
 
                   <div class="skill-bar mb-4">
                     <div class="flex items-end justify-between mb-1">
-                      <span class="font-body text-xl uppercase text-primary">React Native</span>
-                      <span class="skill-pct font-body text-2xl font-bold text-primary transition-colors duration-200">70%</span>
+                      <span class="font-body text-xl uppercase text-purple">React Native</span>
+                      <span class="skill-pct font-body text-2xl font-bold text-purple transition-colors duration-200">70%</span>
                     </div>
                     <div class="font-mono text-sm tracking-widest">
-                      <span class="text-primary">[██████████████░░░░░░]</span>
+                      <span class="text-purple">[██████████████░░░░░░]</span>
                     </div>
                   </div>
 
@@ -222,13 +244,11 @@
         </div>
 
         <!-- ── WORK ── -->
-        <div class="bg-black py-16 md:py-20" id="work"
-          x-intersect:enter="activeSection = 'work'">
+        <div class="bg-black py-16 md:py-20" id="work">
           <div class="container">
-            <div class="tui-panel" data-label="WORK EXPERIENCE"
-              :class="{ 'active': activeSection === 'work' }">
+            <div class="tui-panel panel-pink" data-label="WORK EXPERIENCE">
               <p class="font-mono text-dim-green text-sm mb-2">$ cat /var/log/career.log</p>
-              <h2 class="font-header text-lg sm:text-xl uppercase text-primary glow-text-subtle mb-2">
+              <h2 class="font-header text-lg sm:text-xl uppercase text-pink glow-text-pink mb-2">
                 My work experience
               </h2>
               <p class="font-body text-xl text-mid-green mb-8">Here's what I've done with the past</p>
@@ -237,7 +257,7 @@
                 <div class="tui-row">
                   <div class="flex flex-col md:flex-row md:items-start gap-4">
                     <div class="md:w-1/4 shrink-0">
-                      <span class="font-mono text-sm text-amber">2013-04 .. PRESENT</span>
+                      <span class="font-mono text-sm text-teal">2013-04 .. PRESENT</span>
                     </div>
                     <div class="md:w-3/4">
                       <span class="tui-row-title block font-header text-xs uppercase text-primary mb-2">Lead Developer</span>
@@ -251,7 +271,7 @@
                 <div class="tui-row">
                   <div class="flex flex-col md:flex-row md:items-start gap-4">
                     <div class="md:w-1/4 shrink-0">
-                      <span class="font-mono text-sm text-amber">2018-10 .. 2022-05</span>
+                      <span class="font-mono text-sm text-teal">2018-10 .. 2022-05</span>
                     </div>
                     <div class="md:w-3/4">
                       <span class="tui-row-title block font-header text-xs uppercase text-primary mb-2">Co-Founder & Software Engineer</span>
@@ -265,7 +285,7 @@
                 <div class="tui-row">
                   <div class="flex flex-col md:flex-row md:items-start gap-4">
                     <div class="md:w-1/4 shrink-0">
-                      <span class="font-mono text-sm text-amber">2012-12 .. 2013-03</span>
+                      <span class="font-mono text-sm text-teal">2012-12 .. 2013-03</span>
                     </div>
                     <div class="md:w-3/4">
                       <span class="tui-row-title block font-header text-xs uppercase text-primary mb-2">Statistical Engineer Intern</span>
@@ -282,13 +302,11 @@
         </div>
 
         <!-- ── VIDEOS ── -->
-        <div class="bg-black py-16 md:py-20" id="videos"
-          x-intersect:enter="activeSection = 'videos'">
+        <div class="bg-black py-16 md:py-20" id="videos">
           <div class="container">
-            <div class="tui-panel" data-label="VIDEOS"
-              :class="{ 'active': activeSection === 'videos' }">
+            <div class="tui-panel panel-purple" data-label="VIDEOS">
               <p class="font-mono text-dim-green text-sm mb-2">$ mpv --playlist=streams.m3u</p>
-              <h2 class="font-header text-lg sm:text-xl uppercase text-primary glow-text-subtle mb-2">
+              <h2 class="font-header text-lg sm:text-xl uppercase text-purple glow-text-purple mb-2">
                 I also like to make videos
               </h2>
               <p class="font-body text-xl text-mid-green mb-8">Check out my latest streams!</p>
@@ -331,14 +349,12 @@
         </div>
 
         <!-- ── CONTACT ── -->
-        <div class="bg-black py-16 lg:py-24" id="contact"
-          x-intersect:enter="activeSection = 'contact'">
+        <div class="bg-black py-16 lg:py-24" id="contact">
           <div class="container">
-            <div class="tui-panel" data-label="CONTACT"
-              :class="{ 'active': activeSection === 'contact' }">
+            <div class="tui-panel" data-label="CONTACT">
               <div class="text-center">
                 <p class="font-mono text-dim-green text-sm mb-2">$ mail --compose</p>
-                <h3 class="font-header text-sm sm:text-lg uppercase leading-relaxed tracking-wide text-primary glow-text-subtle mb-6">
+                <h3 class="font-header text-sm sm:text-lg uppercase leading-relaxed tracking-wide text-primary glow-text mb-6">
                   You can email me if you want.
                 </h3>
                 <a href="mailto:tannermares@gmail.com?subject=Hello from tannermares.com!"
@@ -380,17 +396,13 @@
         <span class="font-mono text-xs text-primary glow-text-subtle hidden sm:inline">[tanner@portfolio]</span>
         <div class="flex items-center gap-1 sm:gap-2 font-mono text-xs mx-auto sm:mx-0">
           <span class="text-dim-green">──</span>
-          <span class="status-bar-section cursor-pointer px-1" :class="{ 'active': activeSection === 'about' }"
-            @click="triggerNavItem('#about')">ABOUT</span>
+          <span class="status-link status-link-teal cursor-pointer px-1" @click="triggerNavItem('#about')">ABOUT</span>
           <span class="text-dim-green">──</span>
-          <span class="status-bar-section cursor-pointer px-1" :class="{ 'active': activeSection === 'work' }"
-            @click="triggerNavItem('#work')">WORK</span>
+          <span class="status-link status-link-pink cursor-pointer px-1" @click="triggerNavItem('#work')">WORK</span>
           <span class="text-dim-green">──</span>
-          <span class="status-bar-section cursor-pointer px-1" :class="{ 'active': activeSection === 'videos' }"
-            @click="triggerNavItem('#videos')">VIDEOS</span>
+          <span class="status-link status-link-purple cursor-pointer px-1" @click="triggerNavItem('#videos')">VIDEOS</span>
           <span class="text-dim-green">──</span>
-          <span class="status-bar-section cursor-pointer px-1" :class="{ 'active': activeSection === 'contact' }"
-            @click="triggerNavItem('#contact')">CONTACT</span>
+          <span class="status-link status-link-green cursor-pointer px-1" @click="triggerNavItem('#contact')">CONTACT</span>
           <span class="text-dim-green">──</span>
         </div>
         <span class="font-mono text-xs text-primary hidden sm:inline"><span class="animate-blink">█</span> [ONLINE]</span>
