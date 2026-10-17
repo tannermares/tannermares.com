@@ -17,23 +17,27 @@ Personal portfolio site for Tanner Mares. Static HTML + Tailwind CSS v3 + Alpine
 
 Single-page static site with no framework or bundler — just PostCSS for Tailwind compilation.
 
-- `index.html` — Main portfolio page (hero, about, work experience, videos, contact)
-- `post.html` — Blog post template (with highlight.js for code blocks)
-- `assets/styles/main.css` — Tailwind directives only, compiles to `main.min.css`
-- `assets/js/main.js` — Currently empty; JS comes from CDN (Alpine.js, Alpine Toolkit)
-- `tailwind.config.js` — Custom theme: colors, fonts, spacing extensions
+- `index.html` — The whole site: hero, projects, work, about, contact
+- `assets/styles/main.css` — Tailwind directives plus the theme's custom pieces (sun, grid, chrome text, buttons, timeline); compiles to `main.min.css`
+- `assets/img/projects/` — App icons for the project cards
+- `assets/img/og-image.png` — Social preview image (1200×630); bump the `?v=` in the meta tag when replacing it
+- `assets/img/favicon.svg` — Source for the icons; `favicon.png`, `apple-touch-icon.png` (square corners), and root `favicon.ico` are rendered from it with `rsvg-convert`/`magick`
+- No local JS; Alpine.js comes from CDN
+- `tailwind.config.js` — Custom theme: colors, fonts
 - `postcss.config.js` — Tailwind + autoprefixer + cssnano pipeline
 
 ## Styling Conventions
 
-- All styling is Tailwind utility classes — no custom CSS beyond the directives in `main.css`
-- Custom color palette: `primary` (#5540af), `yellow` (#f9e71c), `lila`, `grey-10` through `grey-70`
-- Fonts: `font-header` (Raleway), `font-body` (Open Sans) — loaded from Google Fonts
+- Synthwave / outrun theme: night-sky background, striped sun, neon grid floor, chrome lettering on the hero name only
+- Layout and spacing use Tailwind utilities; effects Tailwind can't express (masks, gradients, glows) live as classes in `main.css`
+- Color tokens: `night`, `plum`, `dusk` (backgrounds), `magenta`, `sun`, `ember`, `cyan` (neon accents), `haze`, `muted`, `line` (text and borders)
+- Fonts: `font-display`/`font-body` (Kanit), `font-script` (Mr Dafoe, hero only) — loaded from Google Fonts
 - Icons: Boxicons via CDN (`bx bxl-*` classes)
 - Container is centered with 1rem padding (`container` class in tailwind config)
+- Rebuild `main.min.css` after changing classes in HTML; it's committed and served directly
 
 ## Alpine.js Patterns
 
 - Mobile menu toggle via `x-data="{ mobileMenu: false }"` on `<body>`
-- Smooth scroll navigation using `$scroll(id)` from Alpine Collective Toolkit
+- Navigation uses plain `#anchor` links with CSS smooth scrolling (`scroll-margin-top` clears the sticky nav)
 - No custom Alpine components or stores
