@@ -136,9 +136,13 @@ section[id] {
   filter: drop-shadow(0 3px 0 #2b0f54) drop-shadow(0 0 22px rgba(255, 46, 136, 0.5));
 }
 
+/* Cyan so it reads against the warm sun; the dark stroke behind the fill
+   separates the thin script from whatever band it crosses */
 .neon-script {
-  color: #ff2e88;
-  text-shadow: 0 0 2px #fff, 0 0 10px #ff2e88, 0 0 24px #ff2e88, 0 0 48px rgba(255, 46, 136, 0.6);
+  color: #c8fbfc;
+  -webkit-text-stroke: 0.12em #120a2b;
+  paint-order: stroke fill;
+  text-shadow: 0 0 6px #2de2e6, 0 0 16px #2de2e6, 0 0 34px rgba(45, 226, 230, 0.55);
 }
 
 /* ── Section heading mark: three sun bands ── */
