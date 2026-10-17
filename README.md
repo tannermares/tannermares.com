@@ -10,6 +10,4 @@ yarn start
 
 ## Deployment
 
-```
-yarn deploy
-```
+Push to `main`. A GitHub Actions workflow builds the CSS and deploys the site to GitHub Pages.

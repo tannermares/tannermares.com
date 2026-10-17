@@ -10,7 +10,7 @@ Personal portfolio site for Tanner Mares. Static HTML + Tailwind CSS v3 + Alpine
 
 - **Dev server:** `yarn start` (concurrent PostCSS watch + BrowserSync with live reload)
 - **Build CSS:** `yarn build` (production PostCSS with cssnano minification)
-- **Deploy:** `yarn deploy` (builds then pushes to gh-pages branch)
+- **Deploy:** push to `main`. The GitHub Actions workflow in `.github/workflows/deploy.yml` builds the CSS and publishes only `index.html`, `favicon.ico`, `assets/img/`, and `main.min.css` to GitHub Pages. The custom domain is set in the repo's Pages settings, not a CNAME file. New top-level files the page loads must be added to the workflow's "Assemble site" step.
 - **Format:** `yarn format` (Prettier on HTML files)
 
 ## Architecture
